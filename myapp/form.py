@@ -1,4 +1,4 @@
-from .models import Empleado
+from .models import Empleado, Pais
 from django import forms
 
 

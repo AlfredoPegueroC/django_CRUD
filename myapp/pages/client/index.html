@@ -1,6 +1,37 @@
-{% extends '../Base.html'%}
+{% extends '../base.html'%} {% block content%}
+<div class="container">
+  <a class="btn bg-primary text-bg-primary mt-5" href="/myapp/create"
+    >Agregar nuevo cliente</a
+  >
+  <table class="table mt-3 text-center">
+    <thead>
+      <tr class="table-dark p-4">
+        <th class="fw-bold" scope="col">codigo</th>
+        <th class="fw-bold" scope="col">nombre</th>
+        <th class="fw-bold" scope="col">Limite de Credito</th>
+        <th class="fw-bold" scope="col">Pais</th>
+        <th class="fw-bold" scope="col">Fecha de ingreso</th>
+        <th class="fw-bold" scope="col">Acciones</th>
 
-
-{% block content%}
-<h1>WORKING</h1>
+      </tr>
+    </thead>
+    <tbody>
+      {%for c in data %}
+      <tr class="align-items-center">
+        <td class="align-middle" scope="row">{{c.id}}</td>
+        <td class="align-middle">{{c.Nombre}}</td>
+        <td class="align-middle">{{c.LimiteCredito}}</td>
+        <td class="align-middle">{{c.Pais}}</td>
+        <td class="align-middle">{{c.FechaIngreso}}</td>
+        <td class="align-middle">
+          <a href="/myapp/detalle/{{c.id}}" class="btn btn-primary fw-semibold">Ver</a>
+          <a href="/myapp/delete/{{c.id}}" class="btn btn-danger fw-semibold">Borrar</a>
+          <a href="/myapp/update/{{c.id}}" class="btn btn-warning fw-semibold">Editar</a>
+         
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 {% endblock%}

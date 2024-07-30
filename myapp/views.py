@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from .models import Empleado, EmpleadoSerializer, PaisSerializer, Pais
 from .form import EmpleadoForm
 
@@ -13,11 +13,14 @@ def create(request):
     form = EmpleadoForm(request.POST)
     if form.is_valid():
       form.save()
-  return render(request, 'create.html')
+      return redirect('index')
+  else:
+    form = EmpleadoForm()
+  return render(request, 'client/create.html', {'form': form})
 
 def detalle(request, pk):
   emp = Empleado.objects.filter(id=pk).first()
-  return render(request, 'detalle.html', {'data': emp})
+  return render(request, 'client/detalle.html', {'data': emp})
 
 def update(request, pk):
   emp = Empleado.objects.filter(id=pk).first()
@@ -27,16 +30,13 @@ def update(request, pk):
       form.save()
   else:
    form = EmpleadoForm(instance=emp)
-  return render(request, 'update', {'form': form})
+  return render(request, 'client/update.html', {'form': form})
 
 def delete(request, pk):
-  emp = Empleado.objects.filter(id=pk).first()
-
   if request.method == 'GET':
-    emp.delete()
+    Empleado.objects.filter(id=pk).first().delete()
     return redirect('index')
-  
-  return render(request, 'delete.html', {'data': emp})
+  return HttpResponse('Deleted Successfully')
 
 @api_view(['GET'])
 def getAllEmpleado(request):
