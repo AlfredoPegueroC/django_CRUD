@@ -1,6 +1,5 @@
-from .models import Empleado, Pais
+from .models import Empleado
 from django import forms
-
 
 class EmpleadoForm(forms.ModelForm):
   class Meta:

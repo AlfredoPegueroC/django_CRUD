@@ -1,0 +1,29 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination .step-links {
+  display: flex;
+  gap: 10px;
+}
+
+.pagination .step-links a {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.pagination .step-links a:hover {
+  background-color: #0056b3;
+}
+
+.pagination .step-links .current {
+  padding: 5px 10px;
+  background-color: #e9ecef;
+  color: #6c757d;
+  border-radius: 5px;
+}

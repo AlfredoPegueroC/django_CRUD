@@ -1,13 +1,21 @@
 from django.shortcuts import render, redirect, HttpResponse
+from django.core.paginator import Paginator
 from .models import Empleado, EmpleadoSerializer, PaisSerializer, Pais
 from .form import EmpleadoForm
+
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 # Create your views here.
 def index(request):
-  return render(request, 'client/index.html', {'data': Empleado.objects.all()})
+  emp = Empleado.objects.all()
+  paginator = Paginator(emp, 10)
 
+  pageNumber = request.GET.get('page')
+  pageObj = paginator.get_page(pageNumber)
+  return render(request, 'client/index.html', {'data': pageObj})
+
+#
 def create(request):
   if request.method == 'POST':
     form = EmpleadoForm(request.POST)
@@ -28,6 +36,7 @@ def update(request, pk):
     form = EmpleadoForm(request.POST, instance=emp)
     if form.is_valid():
       form.save()
+    return redirect('index')
   else:
    form = EmpleadoForm(instance=emp)
   return render(request, 'client/update.html', {'form': form})
