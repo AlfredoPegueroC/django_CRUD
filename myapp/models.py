@@ -12,7 +12,7 @@ class Pais(models.Model):
 
 class Empleado(models.Model):
   Nombre = models.CharField(max_length=50, null=False)
-  FechaIngreso = models.DateTimeField(auto_now_add=True, null=True)
+  FechaIngreso = models.DateTimeField(auto_now_add=True)
   LimiteCredito = models.DecimalField(max_digits=10, decimal_places=2, null=False)
   Pais = models.ForeignKey(Pais, on_delete=models.CASCADE)
 
