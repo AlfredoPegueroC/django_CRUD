@@ -11,7 +11,7 @@
 
 .pagination .step-links a {
   padding: 5px 10px;
-  background-color: #007bff;
+  background-color: #00ff84;
   color: white;
   text-decoration: none;
   border-radius: 5px;
@@ -26,4 +26,9 @@
   background-color: #e9ecef;
   color: #6c757d;
   border-radius: 5px;
+}
+
+/* DISPLAY MESSAGE ADDED */
+.message{
+  color: green;
 }

@@ -28,7 +28,8 @@ def create(request):
   else:
     # INITIALIZER EmpleadoForm,THEN FORM.AS_P CAN WORK  
     form = EmpleadoForm()
-  return render(request, 'client/create.html', {'form': form})
+  data = {'msg': 'registro guardado2', 'form': form}
+  return render(request, 'client/create.html', data)
 
 # DETALLE DE CLIENTE
 def detalle(request, pk):
@@ -40,6 +41,7 @@ def detalle(request, pk):
 def update(request, pk):
   emp = Empleado.objects.filter(id=pk).first()
   if request.method == 'POST':
+    # INSTANCE = EMPLEADO FILL ALL INPUT WITH THE DATA FROM DATA BASE.
     form = EmpleadoForm(request.POST, instance=emp)
     if form.is_valid():
       form.save()

@@ -1,7 +1,6 @@
-const btn = document.querySelector('#btn')
+const btn = document.querySelector('#id_create')
 
-const form = document.querySelector("#id_form")
-const opcion = document.querySelector('#id_Pais')
+const opcion = document.querySelector('#Pais')
 
 async function getPais(){
   const res = await fetch('http://localhost:8000/myapp/data/pais')
@@ -11,5 +10,6 @@ async function getPais(){
     opcion.innerHTML += `<option value=${items.IdPais}>${items.Nombre}</option>`
   });
 }
+
 
 getPais()
